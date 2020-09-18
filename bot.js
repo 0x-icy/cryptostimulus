@@ -14,10 +14,12 @@ const sendTweet = async () => {
       access_token: process.env.TWITTER_ACCESS_KEY,
       access_token_secret: process.env.TWITTER_ACCESS_SECRET,
     });
+    console.log("Bot");
 
     let cgClient = new CoinGecko();
 
-    const res = await cgClient.coins
+    console.log("cgClient");
+    const { data } = await cgClient.coins
       .fetch("uniswap", {
         market_data: true,
         tickers: false,
@@ -27,10 +29,17 @@ const sendTweet = async () => {
         sparkline: false,
       });
       const dollarValue =
-        _.toNumber(res.data.market_data.current_price) * 400;
+        _.toNumber(data.market_data.current_price.usd) * 400;
       const valueString = numeral(dollarValue).format("$0,0");
 
-      await Bot.tweet(`${valueString} \n #UNISWAP $UNI`);
+      console.log("valueString: ", valueString);
+      Bot.addAction("tweet", function (
+        twitter,
+        action,
+        tweet
+      ) {
+        Bot.tweet(`${valueString} \n #UNISWAP $UNI`);
+      });
   } catch (err) {
     console.log("ERROR");
     console.log(err);
