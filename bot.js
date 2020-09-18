@@ -8,12 +8,15 @@ require("dotenv").config();
 const sendTweet = async () => {
   try {
     console.log("Running bot..");
-    let Bot = new TwitterBot({
+    var T = new Twit({
       consumer_key: process.env.TWITTER_API_KEY,
       consumer_secret: process.env.TWITTER_API_KEY,
       access_token: process.env.TWITTER_ACCESS_KEY,
       access_token_secret: process.env.TWITTER_ACCESS_SECRET,
+      // timeout_ms: 60 * 1000, // optional HTTP request timeout to apply to all requests.
+      // strictSSL: true, // optional - requires SSL certificates to be valid.
     });
+
     console.log("Bot");
 
     let cgClient = new CoinGecko();
@@ -33,13 +36,13 @@ const sendTweet = async () => {
       const valueString = numeral(dollarValue).format("$0,0");
 
       console.log("valueString: ", valueString);
-      Bot.addAction("tweet", function (
-        twitter,
-        action,
-        tweet
-      ) {
-        Bot.tweet(`${valueString} \n #UNISWAP $UNI`);
-      });
+      T.post(
+        "statuses/update",
+        { status: `${valueString} \n #UNISWAP $UNI` },
+        function (err, data, response) {
+          console.log(data);
+        }
+      );
   } catch (err) {
     console.log("ERROR");
     console.log(err);
