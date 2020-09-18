@@ -1,5 +1,4 @@
 let Twit = require('twit');
-let TwitterBot = require('node-twitterbot').TwitterBot;
 let CoinGecko = require('coingecko-api');
 let _ = require('lodash');
 var numeral = require("numeral");
@@ -10,7 +9,7 @@ const sendTweet = async () => {
     console.log("Running bot..");
     var T = new Twit({
       consumer_key: process.env.TWITTER_API_KEY,
-      consumer_secret: process.env.TWITTER_API_KEY,
+      consumer_secret: process.env.TWITTER_API_SECRET,
       access_token: process.env.TWITTER_ACCESS_KEY,
       access_token_secret: process.env.TWITTER_ACCESS_SECRET,
       // timeout_ms: 60 * 1000, // optional HTTP request timeout to apply to all requests.
