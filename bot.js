@@ -37,7 +37,7 @@ const sendTweet = async () => {
       console.log("valueString: ", valueString);
       T.post(
         "statuses/update",
-        { status: `${valueString} \n Sponsored by https://nftolio.xyz (NFT Portfolio Tracker) \n #uniswap $uni #nft` },
+        { status: `${valueString} \n\nSponsored by https://nftolio.xyz (NFT Portfolio Tracker)\n #uniswap $uni #nft` },
         function (err, data, response) {
           console.log(data);
         }
