@@ -1,4 +1,4 @@
 # cryptostimulus
 [@CryptoStimulus](https://twitter.com/CryptoStimulus) on twitter
 
-Sponsored by [nftolio.xyz](https://www.nftolio.xyz/)
+built by the team behind [https://icy.tools](https://icy.tools)
