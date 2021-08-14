@@ -37,7 +37,7 @@ const sendTweet = async () => {
       console.log("valueString: ", valueString);
       T.post(
         "statuses/update",
-        { status: `${valueString} \n\nSponsored by https://nftolio.xyz (NFT Portfolio Tracker)\n #uniswap $uni #nft` },
+        { status: `${valueString} \n\built by the team behind https://icy.tools (nft porfolio tracking)\n #uniswap $uni #NFTs #defi $defi` },
         function (err, data, response) {
           console.log(data);
         }
